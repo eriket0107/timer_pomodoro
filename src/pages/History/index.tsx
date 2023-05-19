@@ -1,12 +1,15 @@
 import { HistoryContainer, HistoryList, Status } from './styles'
 import { useCycleContext } from '../../contexts/CyclesContext'
+import { formatDistanceToNow } from 'date-fns'
+import ptBR from 'date-fns/locale/pt-BR'
 
 export function History() {
   const { cycles } = useCycleContext()
-
+  console.log(formatDistanceToNow)
   return (
     <HistoryContainer>
       <h1>Meu histórico</h1>
+      <pre>{JSON.stringify(cycles, null, 2)}</pre>
       <HistoryList>
         <table>
           <thead>
@@ -18,14 +21,40 @@ export function History() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Tarefa</td>
-              <td>20 minutos</td>
-              <td>Há 2 meses</td>
-              <td>
-                <Status statusColor="green">Concluído</Status>
-              </td>
-            </tr>
+            {cycles.map((cycle) => {
+              const {
+                id,
+                task,
+                minutesAmount,
+                startDate,
+                finishedDate,
+                interruptedDate,
+              } = cycle
+
+              return (
+                <tr key={id}>
+                  <td>{task}</td>
+                  <td>{minutesAmount} minutos</td>
+                  <td>
+                    {formatDistanceToNow(startDate, {
+                      addSuffix: true,
+                      locale: ptBR,
+                    })}
+                  </td>
+                  <td>
+                    {finishedDate && (
+                      <Status statusColor="green">Concluído</Status>
+                    )}
+                    {interruptedDate && (
+                      <Status statusColor="red">Interrompido</Status>
+                    )}
+                    {!finishedDate && !interruptedDate && (
+                      <Status statusColor="yellow">Em andamento</Status>
+                    )}
+                  </td>
+                </tr>
+              )
+            })}
           </tbody>
         </table>
       </HistoryList>
