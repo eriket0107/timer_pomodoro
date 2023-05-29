@@ -5,11 +5,9 @@ import ptBR from 'date-fns/locale/pt-BR'
 
 export function History() {
   const { cycles } = useCycleContext()
-  console.log(formatDistanceToNow)
   return (
     <HistoryContainer>
       <h1>Meu histórico</h1>
-      <pre>{JSON.stringify(cycles, null, 2)}</pre>
       <HistoryList>
         <table>
           <thead>
@@ -36,7 +34,7 @@ export function History() {
                   <td>{task}</td>
                   <td>{minutesAmount} minutos</td>
                   <td>
-                    {formatDistanceToNow(startDate, {
+                    {formatDistanceToNow(new Date(startDate), {
                       addSuffix: true,
                       locale: ptBR,
                     })}
