@@ -3,12 +3,12 @@
 ### A project made for time management using pomodoro technique
 
 ### to start the project 
-1.npm install < br />
+1.npm install <br>
 2.npm run dev 
-< br />
+<br>
 (or you can use yarn if you want) 
-< br />
-project running < br />
+<br?
+project running <br>
 https://timer-pomodoro-self.vercel.app/
 
 ![Screenshot from 2023-05-29 08-53-03](https://github.com/eriket0107/timer_pomodoro/assets/91575045/99e3ce71-eedf-4cf3-8a83-47f263456872)
