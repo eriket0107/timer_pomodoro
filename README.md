@@ -7,7 +7,7 @@
 2.npm run dev 
 <br>
 (or you can use yarn if you want) 
-<br?
+<br>
 project running <br>
 https://timer-pomodoro-self.vercel.app/
 
